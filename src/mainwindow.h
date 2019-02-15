@@ -1,4 +1,3 @@
-
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
  
@@ -13,6 +12,7 @@ class MainWindow : public KXmlGuiWindow
  
   private:
     KTextEdit* textArea;
+    void setupActions();
 };
  
 #endif

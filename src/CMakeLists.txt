@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project (tutorial2)
+project (tutorial3)
 
 set(QT_MIN_VERSION "5.3.0")
 set(KF5_MIN_VERSION "5.2.0")
@@ -15,28 +15,32 @@ include(FeatureSummary)
 
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS 
     Core    # QCommandLineParser, QStringLiteral
-    Widgets # QApplication 
+    Widgets # QApplication, QAction
 )
 
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     CoreAddons      # KAboutData
     I18n            # KLocalizedString
-    XmlGui          # KXmlGuiWindow
+    XmlGui          # KXmlGuiWindow, KActionCollection
     TextWidgets     # KTextEdit
+    ConfigWidgets   # KStandardActions
 )
+    
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
     
-set(tutorial2_SRCS main.cpp mainwindow.cpp)
+set(tutorial3_SRCS main.cpp mainwindow.cpp)
 
-add_executable(tutorial2 ${tutorial2_SRCS})
+add_executable(tutorial3 ${tutorial3_SRCS})
 
-target_link_libraries(tutorial2
+target_link_libraries(tutorial3
     Qt5::Widgets
     KF5::CoreAddons
     KF5::I18n
     KF5::XmlGui
     KF5::TextWidgets
+    KF5::ConfigWidgets
 )
 
-install(TARGETS tutorial2  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS tutorial3  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(FILES tutorial3ui.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/tutorial3)
