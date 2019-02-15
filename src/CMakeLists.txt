@@ -1,7 +1,6 @@
-
 cmake_minimum_required(VERSION 3.0)
 
-project (tutorial1)
+project (tutorial2)
 
 set(QT_MIN_VERSION "5.3.0")
 set(KF5_MIN_VERSION "5.2.0")
@@ -14,30 +13,30 @@ include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(FeatureSummary)
 
-# Find Qt modules
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS 
     Core    # QCommandLineParser, QStringLiteral
     Widgets # QApplication 
 )
 
-# Find KDE modules
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     CoreAddons      # KAboutData
     I18n            # KLocalizedString
-    WidgetsAddons   # KMessageBox
+    XmlGui          # KXmlGuiWindow
+    TextWidgets     # KTextEdit
 )
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
     
-set(tutorial1_SRCS main.cpp)
+set(tutorial2_SRCS main.cpp mainwindow.cpp)
 
-add_executable(tutorial1 ${tutorial1_SRCS})
+add_executable(tutorial2 ${tutorial2_SRCS})
 
-target_link_libraries(tutorial1
+target_link_libraries(tutorial2
     Qt5::Widgets
     KF5::CoreAddons
     KF5::I18n
-    KF5::WidgetsAddons
+    KF5::XmlGui
+    KF5::TextWidgets
 )
 
-install(TARGETS tutorial1  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS tutorial2  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

@@ -5,7 +5,8 @@
 #include <QCommandLineParser>
 #include <KAboutData>
 #include <KLocalizedString>
-#include <KMessageBox>
+
+#include "mainwindow.h"
 
 int main (int argc, char *argv[])
 {
@@ -42,13 +43,9 @@ int main (int argc, char *argv[])
     aboutData.setupCommandLine(&parser);
     parser.process(app);
     aboutData.processCommandLine(&parser);
-    
-    KGuiItem yesButton( i18n( "Hello" ), QString(),
-                        i18n( "This is a tooltip" ),
-                        i18n( "This is a WhatsThis help text." ) );
 
-return 
-        KMessageBox::questionYesNo 
-        (0, i18n( "Hello World" ), i18n( "Hello" ), yesButton ) 
-        == KMessageBox:EXIT_SUCCESS: EXIT_FAILURE;
+    MainWindow* window = new MainWindow();
+    window->show();
+
+    return app.exec();
 }
